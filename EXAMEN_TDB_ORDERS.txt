@@ -1,0 +1,489 @@
+MySQL Shell 8.0.31
+
+Copyright (c) 2016, 2022, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 8
+Server version: 8.0.31 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > \show database
+Unknown report: database
+ MySQL  localhost:3306 ssl  SQL > \show databases
+Unknown report: databases
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| bdpendientes       |
+| empleados          |
+| evaluacion_1       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+10 rows in set (0.0525 sec)
+ MySQL  localhost:3306 ssl  SQL > create database ORDERS;
+Query OK, 1 row affected (0.3728 sec)
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| bdpendientes       |
+| empleados          |
+| evaluacion_1       |
+| information_schema |
+| mysql              |
+| orders             |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.0276 sec)
+ MySQL  localhost:3306 ssl  SQL > \use orders
+Default schema set to `orders`.
+Fetching global names, object names from `orders` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  orders  SQL > create table ordenes(
+                                       -> id int auto_increment key,
+                                       -> orden_id varchar(15),
+                                       -> fecha_orden int,
+                                       -> fecha_envio int,
+                                       -> tipo_envio varchar(20),
+                                       -> cliente_id varchar(10),
+                                       -> nom_cliente varchar(30),
+                                       -> pais varchar(30),
+                                       -> ciudad varchar(30),
+                                       -> estado varchar(30),
+                                       -> cod_postal int,
+                                       -> id_producto varchar(20),
+                                       -> ventas dec(5,5),
+                                       -> cantidad int,
+                                       -> ganancia dec(5,5));
+Query OK, 0 rows affected (0.5481 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int          | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)  | YES  |     | NULL    |                |
+| fecha_orden | int          | YES  |     | NULL    |                |
+| fecha_envio | int          | YES  |     | NULL    |                |
+| tipo_envio  | varchar(20)  | YES  |     ;
+ERROR: 1065 (42000): Query was empty|     alter table ordenes modify tipo_envio enmu
+ MySQL  localhost:3306 ssl  orders  SQL > ;lter table ordenes modify tipo_envio enmu
+ERROR: 1065 (42000): Query was empty|     alter table ordenes modify tipo_envio enmu (
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('E
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ES
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('EST
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTA
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTAN
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTAND
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDA
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR'
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR',
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR',' r MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR','P
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enmu ('ESTANDAR','PR MySQL  localhost:3306 ssl  orders  SQL >
+ MySQL  localhost:3306 ssl  orders  SQL > ;
+ERROR: 1065 (42000): Query was empty
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');
+Query OK, 0 rows affected (0.4877 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+--------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                 | Null | Key | Default | Extra          |
++-------------+--------------------------------------+------+-----+---------+----------------+
+| id          | int                                  | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                          | YES  |     | NULL    |                |
+| fecha_orden | int                                  | YES  |     | NULL    |                |
+| fecha_envio | int                                  | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA') | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                          | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                          | YES  |     | NULL    |                |
+| pais        | varchar(30)                          | YES  |     | NULL    |                |
+| ciudad      | varchar(30)                          | YES  |     | NULL    |                |
+| estado      | varchar(30)                          | YES  |     | NULL    |                |
+| cod_postal  | int                                  | YES  |     | NULL    |                |
+| id_producto | varchar(20)                          | YES  |     | NULL    |                |
+| ventas      | decimal(5,5)                         | YES  |     | NULL    |                |
+| cantidad    | int                                  | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                         | YES  |     | NULL    |                |
++-------------+--------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0067 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');                       alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');                       alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');                       alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');                       alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','S;;;;EGUNDA');
+Query OK, 0 rows affected (0.2353 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+------------------------------------------+------+-----+---------+----------------+| Field       | Type                                     | Null | Key | Default | Extra          |+-------------+------------------------------------------+------+-----+---------+----------------+| id          | int                                      | NO   | PRI | NULL    | auto_increment || orden_id    | varchar(15)                              | YES  |     | NULL    |                || fecha_orden | int                                      | YES  |     | NULL    |                || fecha_envio | int                                      | YES  |     | NULL    |                || tipo_envio  | enum('ESTANDAR','PRIMERA','S;;;;EGUNDA') | YES  |     | NULL    |                || cliente_id  | varchar(10)                              | YES  |     | NULL    |                || nom_cliente | varchar(30)                              | YES  |     | NULL    |                || pais        | varchar(30)                              | YES  |     | NULL    |                || ciudad      | varchar(30)                              | YES  |     | NULL    |                || estado      | varchar(30)                              | YES  |     | NULL    |                || cod_postal  | int                                      | YES  |     | NULL    |                || id_producto | varchar(20)                              | YES  |     | NULL    |                || ventas      | decimal(5,5)                             | YES  |     | NULL    |                || cantidad    | int                                      | YES  |     | NULL    |                || ganancia    | decimal(5,5)                             | YES  |     | NULL    |                |+-------------+------------------------------------------+------+-----+---------+----------------+15 rows in set (0.0063 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify tipo_envio enum('ESTANDAR','PRIMERA','SEGUNDA');
+Query OK, 0 rows affected (0.3883 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+--------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                 | Null | Key | Default | Extra          |
++-------------+--------------------------------------+------+-----+---------+----------------+
+| id          | int                                  | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                          | YES  |     | NULL    |                |
+| fecha_orden | int                                  | YES  |     | NULL    |                |
+| fecha_envio | int                                  | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA') | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                          | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)               ;');
+ERROR: 1065 (42000): Query was empty      alter table ordenes modify tipo_envio enum('','','','',')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','',';')
+                                       '> alter table ordenes modify tipo_envio enum('','','','',';;')
+                                       '> alter table ordenes modify tipo_envio enum('','','','',';')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> alter table ordenes modify tipo_envio enum('','','','','')
+                                       '> ;
+                                       '> ;
+                                       '> ;
+                                       '> asd;
+                                       '> desc ordenes;
+                                       '>
+
+
+
+MySQL Shell 8.0.31
+
+Copyright (c) 2016, 2022, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 9
+Server version: 8.0.31 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > show databases;
++--------------------+
+| Database           |
++--------------------+
+| agencia            |
+| bdpendientes       |
+| empleados          |
+| evaluacion_1       |
+| information_schema |
+| mysql              |
+| orders             |
+| performance_schema |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.0033 sec)
+ MySQL  localhost:3306 ssl  SQL > \use orders
+Default schema set to `orders`.
+Fetching global names, object names from `orders` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  orders  SQL > show tables;
++------------------+
+| Tables_in_orders |
++------------------+
+| ordenes          |
++------------------+
+1 row in set (0.0060 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+--------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                 | Null | Key | Default | Extra          |
++-------------+--------------------------------------+------+-----+---------+----------------+
+| id          | int                                  | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                          | YES  |     | NULL    |                |
+| fecha_orden | int                                  | YES  |     | NULL    |                |
+| fecha_envio | int                                  | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA') | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                          | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                          | YES  |     | NULL    |                |
+| pais        | varchar(30)                          | YES  |     | NULL    |                |
+| ciudad      | varchar(30)                          | YES  |     | NULL    |                |
+| estado      | varchar(30)                          | YES  |     | NULL    |                |
+| cod_postal  | int                                  | YES  |     | NULL    |                |
+| id_producto | varchar(20)                          | YES  |     | NULL    |                |
+| ventas      | decimal(5,5)                         | YES  |     | NULL    |                |
+| cantidad    | int                                  | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                         | YES  |     | NULL    |                |
++-------------+--------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0070 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes
+                                       -> modify pais enum('ESTADOS UNIDOS');
+Query OK, 0 rows affected (0.2303 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+--------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                 | Null | Key | Default | Extra          |
++-------------+--------------------------------------+------+-----+---------+----------------+
+| id          | int                                  | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                          | YES  |     | NULL    |                |
+| fecha_orden | int                                  | YES  |     | NULL    |                |
+| fecha_envio | int                                  | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA') | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                          | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                          | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')               | YES  |     | NULL    |                |
+| ciudad      | varchar(30)                          | YES  |     | NULL    |                |
+| estado      | varchar(30)                          | YES  |     | NULL    |                |
+| cod_postal  | int                                  | YES  |     | NULL    |                |
+| id_producto | varchar(20)                          | YES  |     | NULL    |                |
+| ventas      | decimal(5,5)                         | YES  |     | NULL    |                |
+| cantidad    | int                                  | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                         | YES  |     | NULL    |                |
++-------------+--------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0065 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify ciudad('HENDERSON', 'LOS ANGELES', 'CONCORD', 'SEATTLE', 'MADISON');
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '('HENDERSON', 'LOS ANGELES', 'CONCORD', 'SEATTLE', 'MADISON')' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify ciudad ENUM('HENDERSON', 'LOS ANGELES', 'CONCORD', 'SEATTLE', 'MADISON');
+Query OK, 0 rows affected (0.1861 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+---------------------------------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                                          | Null | Key | Default | Extra          |
++-------------+---------------------------------------------------------------+------+-----+---------+----------------+
+| id          | int                                                           | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                                                   | YES  |     | NULL    |                |
+| fecha_orden | int                                                           | YES  |     | NULL    |                |
+| fecha_envio | int                                                           | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA')                          | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                                                   | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                                                   | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')                                        | YES  |     | NULL    |                |
+| ciudad      | enum('HENDERSON','LOS ANGELES','CONCORD','SEATTLE','MADISON') | YES  |     | NULL    |                |
+| estado      | varchar(30)                                                   | YES  |     | NULL    |                |
+| cod_postal  | int                                                           | YES  |     | NULL    |                |
+| id_producto | varchar(20)                                                   | YES  |     | NULL    |                |
+| ventas      | decimal(5,5)                                                  | YES  |     | NULL    |                |
+| cantidad    | int                                                           | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                                                  | YES  |     | NULL    |                |
++-------------+---------------------------------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0066 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify estado enum('KENTUCKY', 'CALIFORNIA', 'CAROLINA NORTE', 'WASHINGTON', 'WISCONSIN');
+Query OK, 0 rows affected (0.4595 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                                                    | Null | Key | Default | Extra          |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| id          | int                                                                     | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                                                             | YES  |     | NULL    |                |
+| fecha_orden | int                                                                     | YES  |     | NULL    |                |
+| fecha_envio | int                                                                     | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA')                                    | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                                                             | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                                                             | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')                                                  | YES  |     | NULL    |                |
+| ciudad      | enum('HENDERSON','LOS ANGELES','CONCORD','SEATTLE','MADISON')           | YES  |     | NULL    |                |
+| estado      | enum('KENTUCKY','CALIFORNIA','CAROLINA NORTE','WASHINGTON','WISCONSIN') | YES  |     | NULL    |                |
+| cod_postal  | int                                                                     | YES  |     | NULL    |                |
+| id_producto | varchar(20)                                                             | YES  |     | NULL    |                |
+| ventas      | decimal(5,5)                                                            | YES  |     | NULL    |                |
+| cantidad    | int                                                                     | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                                                            | YES  |     | NULL    |                |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0063 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes
+                                       -> (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261.96', '2', '41.9136');
+ERROR: 1264 (22003): Out of range value for column 'ventas' at row 1
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261', '2', '41.9136');
+ERROR: 1264 (22003): Out of range value for column 'ventas' at row 1
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '12356.72362', '2', '41.9136');
+ERROR: 1264 (22003): Out of range value for column 'ventas' at row 1
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261', '2', '41.9136');
+ERROR: 1264 (22003): Out of range value for column 'ventas' at row 1
+ MySQL  localhost:3306 ssl  orders  SQL > drop ventas from * ordenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ventas from * ordenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify ventas int();
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify ventas int;
+Query OK, 0 rows affected (0.4054 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                                                    | Null | Key | Default | Extra          |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| id          | int                                                                     | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                                                             | YES  |     | NULL    |                |
+| fecha_orden | int                                                                     | YES  |     | NULL    |                |
+| fecha_envio | int                                                                     | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA')                                    | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                                                             | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                                                             | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')                                                  | YES  |     | NULL    |                |
+| ciudad      | enum('HENDERSON','LOS ANGELES','CONCORD','SEATTLE','MADISON')           | YES  |     | NULL    |                |
+| estado      | enum('KENTUCKY','CALIFORNIA','CAROLINA NORTE','WASHINGTON','WISCONSIN') | YES  |     | NULL    |                |
+| cod_postal  | int                                                                     | YES  |     | NULL    |                |
+| id_producto | varchar(20)                                                             | YES  |     | NULL    |                |
+| ventas      | int                                                                     | YES  |     | NULL    |                |
+| cantidad    | int                                                                     | YES  |     | NULL    |                |
+| ganancia    | decimal(5,5)                                                            | YES  |     | NULL    |                |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0063 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261', '2', '41.9136');
+ERROR: 1264 (22003): Out of range value for column 'ganancia' at row 1
+ MySQL  localhost:3306 ssl  orders  SQL >
+ MySQL  localhost:3306 ssl  orders  SQL > alter table ordenes modify ganancia int;
+Query OK, 0 rows affected (1.6928 sec)
+
+Records: 0  Duplicates: 0  Warnings: 0
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                                                    | Null | Key | Default | Extra          |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| id          | int                                                                     | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                                                             | YES  |     | NULL    |                |
+| fecha_orden | int                                                                     | YES  |     | NULL    |                |
+| fecha_envio | int                                                                     | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA')                                    | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                                                             | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                                                             | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')                                                  | YES  |     | NULL    |                |
+| ciudad      | enum('HENDERSON','LOS ANGELES','CONCORD','SEATTLE','MADISON')           | YES  |     | NULL    |                |
+| estado      | enum('KENTUCKY','CALIFORNIA','CAROLINA NORTE','WASHINGTON','WISCONSIN') | YES  |     | NULL    |                |
+| cod_postal  | int                                                                     | YES  |     | NULL    |                |
+| id_producto | varchar(20)                                                             | YES  |     | NULL    |                |
+| ventas      | int                                                                     | YES  |     | NULL    |                |
+| cantidad    | int                                                                     | YES  |     | NULL    |                |
+| ganancia    | int                                                                     | YES  |     | NULL    |                |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0143 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261', '2', '41');
+Query OK, 1 row affected (0.1518 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > select from * ordenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * ordenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > select from * orders;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * orders' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > desc ordenes;
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| Field       | Type                                                                    | Null | Key | Default | Extra          |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+| id          | int                                                                     | NO   | PRI | NULL    | auto_increment |
+| orden_id    | varchar(15)                                                             | YES  |     | NULL    |                |
+| fecha_orden | int                                                                     | YES  |     | NULL    |                |
+| fecha_envio | int                                                                     | YES  |     | NULL    |                |
+| tipo_envio  | enum('ESTANDAR','PRIMERA','SEGUNDA')                                    | YES  |     | NULL    |                |
+| cliente_id  | varchar(10)                                                             | YES  |     | NULL    |                |
+| nom_cliente | varchar(30)                                                             | YES  |     | NULL    |                |
+| pais        | enum('ESTADOS UNIDOS')                                                  | YES  |     | NULL    |                |
+| ciudad      | enum('HENDERSON','LOS ANGELES','CONCORD','SEATTLE','MADISON')           | YES  |     | NULL    |                |
+| estado      | enum('KENTUCKY','CALIFORNIA','CAROLINA NORTE','WASHINGTON','WISCONSIN') | YES  |     | NULL    |                |
+| cod_postal  | int                                                                     | YES  |     | NULL    |                |
+| id_producto | varchar(20)                                                             | YES  |     | NULL    |                |
+| ventas      | int                                                                     | YES  |     | NULL    |                |
+| cantidad    | int                                                                     | YES  |     | NULL    |                |
+| ganancia    | int                                                                     | YES  |     | NULL    |                |
++-------------+-------------------------------------------------------------------------+------+-----+---------+----------------+
+15 rows in set (0.0066 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > select from * ordenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * ordenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > select ordenes;
+ERROR: 1054 (42S22): Unknown column 'ordenes' in 'field list'
+ MySQL  localhost:3306 ssl  orders  SQL > show ordenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ordenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > show table odenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'odenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > select from * table ordenes;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from * table ordenes' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > select * from ordenes;
++----+----------------+-------------+-------------+------------+------------+-------------+----------------+-----------+----------+------------+-----------------+--------+----------+----------+
+| id | orden_id       | fecha_orden | fecha_envio | tipo_envio | cliente_id | nom_cliente | pais           | ciudad    | estado   | cod_postal | id_producto     | ventas | cantidad | ganancia |
++----+----------------+-------------+-------------+------------+------------+-------------+----------------+-----------+----------+------------+-----------------+--------+----------+----------+
+|  1 | CA-2016-152156 |       42682 |       42685 | SEGUNDA    | CG-12520   | CLAIRE GUTE | ESTADOS UNIDOS | HENDERSON | KENTUCKY |      42420 | FUR-BO-10001798 |    261 |        2 |       41 |
++----+----------------+-------------+-------------+------------+------------+-------------+----------------+-----------+----------+------------+-----------------+--------+----------+----------+
+1 row in set (0.0140 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-insert into ordenes (orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2016-152156', '42682', '42685', 'SEGUNDA', 'CG-12520', 'CLAIRE GUTE', 'ESTADOS UNIDOS', 'HENDERSON', 'KENTUCKY', '42420', 'FUR-BO-10001798', '261', '2', '41;;
+                                       '> ;
+                                       '> ;;;;;
+                                       '> show tables;
+                                       '> sd
+                                       '> h
+                                       '> ;
+                                       '>
+
+
+MySQL Shell 8.0.31
+
+Copyright (c) 2016, 2022, Oracle and/or its affiliates.
+Oracle is a registered trademark of Oracle Corporation and/or its affiliates.
+Other names may be trademarks of their respective owners.
+
+Type '\help' or '\?' for help; '\quit' to exit.
+ MySQL  JS > \sql
+Switching to SQL mode... Commands end with ;
+ MySQL  SQL > \connect --mc root@localhost
+Creating a Classic session to 'root@localhost'
+Please provide the password for 'root@localhost': ****
+Save password for 'root@localhost'? [Y]es/[N]o/Ne[v]er (default No): n
+Fetching global names for auto-completion... Press ^C to stop.
+Your MySQL connection id is 12
+Server version: 8.0.31 MySQL Community Server - GPL
+No default schema selected; type \use <schema> to set one.
+ MySQL  localhost:3306 ssl  SQL > \use orders
+Default schema set to `orders`.
+Fetching global names, object names from `orders` for auto-completion... Press ^C to stop.
+ MySQL  localhost:3306 ssl  orders  SQL > show tables;
++------------------+
+| Tables_in_orders |
++------------------+
+| ordenes          |
++------------------+
+1 row in set (0.0047 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > select * from ordenes;
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+| id | orden_id       | fecha_orden | fecha_envio | tipo_envio | cliente_id | nom_cliente     | pais           | ciudad      | estado         | cod_postal | id_producto     | ventas | cantidad | ganancia |
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+|  1 | CA-2016-152156 |       42682 |       42685 | SEGUNDA    | CG-12520   | CLAIRE GUTE     | ESTADOS UNIDOS | HENDERSON   | KENTUCKY       |      42420 | FUR-BO-10001798 |    261 |        2 |       41 |
+|  2 | CA-2016-138688 |       42533 |       42537 | SEGUNDA    | DV-13045   | DARRIN VAN HUFF | ESTADOS UNIDOS | LOS ANGELES | CALIFORNIA     |      90036 | OFF-LA-10000240 |     14 |        2 |        6 |
+|  3 | CA-2017-114412 |       42840 |       42845 | ESTANDAR   | AA-10480   | ANDREW ALLEN    | ESTADOS UNIDOS | CONCORD     | CAROLINA NORTE |      28027 | OFF-PA-10002365 |     15 |        3 |        5 |
+|  4 | CA-2016-161389 |       42709 |       42714 | ESTANDAR   | IM-15070   | IRENE MADDOX    | ESTADOS UNIDOS | SEATTLE     | WASHINGTON     |      98103 | OFF-BI-10003656 |    407 |        3 |      132 |
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+4 rows in set (0.0021 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes(ordenes_id, fecha_orden, fecha_envio, tipo_envio, cliente             insert into ordenes(ordenes_id, fecha_orden, fecha_envio, tipo_envio, cliente_            insert into ordenes(ordenes_id, fecha_orden, fecha_envio, tipo_envio, cliente_id;
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes(ordenes_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2014-105893', '41954', '41961', 'ESTANDAR', 'PK-19075', 'PETE KRIZ', 'ESTADOS UNIDOS', 'MADISON', 'WISCONSIN', '53711', 'OFF-ST-10004186', '665', '6', '13';
+ERROR: 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes(ordenes_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2014-105893', '41954', '41961', 'ESTANDAR', 'PK-19075', 'PETE KRIZ', 'ESTADOS UNIDOS', 'MADISON', 'WISCONSIN', '53711', 'OFF-ST-10004186', '665', '6', '13');
+ERROR: 1054 (42S22): Unknown column 'ordenes_id' in 'field list'
+ MySQL  localhost:3306 ssl  orders  SQL > insert into ordenes(orden_id, fecha_orden, fecha_envio, tipo_envio, cliente_id, nom_cliente, pais, ciudad, estado, cod_postal, id_producto, ventas, cantidad, ganancia) values('CA-2014-105893', '41954', '41961', 'ESTANDAR', 'PK-19075', 'PETE KRIZ', 'ESTADOS UNIDOS', 'MADISON', 'WISCONSIN', '53711', 'OFF-ST-10004186', '665', '6', '13');
+Query OK, 1 row affected (0.2217 sec)
+ MySQL  localhost:3306 ssl  orders  SQL > select * from ordenes;
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+| id | orden_id       | fecha_orden | fecha_envio | tipo_envio | cliente_id | nom_cliente     | pais           | ciudad      | estado         | cod_postal | id_producto     | ventas | cantidad | ganancia |
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+|  1 | CA-2016-152156 |       42682 |       42685 | SEGUNDA    | CG-12520   | CLAIRE GUTE     | ESTADOS UNIDOS | HENDERSON   | KENTUCKY       |      42420 | FUR-BO-10001798 |    261 |        2 |       41 |
+|  2 | CA-2016-138688 |       42533 |       42537 | SEGUNDA    | DV-13045   | DARRIN VAN HUFF | ESTADOS UNIDOS | LOS ANGELES | CALIFORNIA     |      90036 | OFF-LA-10000240 |     14 |        2 |        6 |
+|  3 | CA-2017-114412 |       42840 |       42845 | ESTANDAR   | AA-10480   | ANDREW ALLEN    | ESTADOS UNIDOS | CONCORD     | CAROLINA NORTE |      28027 | OFF-PA-10002365 |     15 |        3 |        5 |
+|  4 | CA-2016-161389 |       42709 |       42714 | ESTANDAR   | IM-15070   | IRENE MADDOX    | ESTADOS UNIDOS | SEATTLE     | WASHINGTON     |      98103 | OFF-BI-10003656 |    407 |        3 |      132 |
+|  5 | CA-2014-105893 |       41954 |       41961 | ESTANDAR   | PK-19075   | PETE KRIZ       | ESTADOS UNIDOS | MADISON     | WISCONSIN      |      53711 | OFF-ST-10004186 |    665 |        6 |       13 |
++----+----------------+-------------+-------------+------------+------------+-----------------+----------------+-------------+----------------+------------+-----------------+--------+----------+----------+
+5 rows in set (0.0022 sec)
+ MySQL  localhost:3306 ssl  orders  SQL >
